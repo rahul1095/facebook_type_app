@@ -1,0 +1,29 @@
+<%@post.comments.each do |comment|%> 
+<p>
+  <strong>Commenter:</strong>
+  <%= comment.commenter %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= comment.body %>
+</p>
+
+<p>
+ <%if comment.user_id == current_user.id%>
+  <%= link_to 'Destroy Comment', [comment.post, comment],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Edit Comment', edit_post_comment_path(comment.post, comment) %>
+  <%end%>
+</p>
+
+<h2> reply a comment</h2>
+<% @replies=Reply.where(:comment_id=> comment.id)
+%>
+<div class="Replies-container_<%= comment.id%>">
+
+<%= render 'replies/Replie'%>
+ </div>
+<%= render 'replies/form', :comment=>comment %>
+<%end%>

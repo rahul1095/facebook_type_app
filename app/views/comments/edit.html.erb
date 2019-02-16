@@ -1,0 +1,17 @@
+
+
+<%= form_for([@post, @comment] , :method =>"patch" ) do |f| %>
+<%#= form_for(:comment, url: "/blogs/#{@blog.id}/comments/#{@comment.id}/edit") do |f| %>
+
+  <p>
+    <%= f.label :commenter %><br>
+    <%= f.text_field :commenter %>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
